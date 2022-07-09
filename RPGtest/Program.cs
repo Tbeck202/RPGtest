@@ -2,7 +2,8 @@
 
 string heroName = "";
 Console.WriteLine("Welcome to the RPG game!");
-while(heroName == "")
+Thread.Sleep(1000);
+while (heroName == "")
 {
     Console.WriteLine("What is your name?");
     heroName = Console.ReadLine();
@@ -10,45 +11,64 @@ while(heroName == "")
 
 HeroClass hero = new HeroClass(heroName);
 EnemyClass enemy = new EnemyClass();
+int enemiesCreated = 1;
+int turnCount = 0;
 
 Console.WriteLine($"Hello {hero.Name}! Please help us fight our enemies! You have {hero.Health} health points. Fight well!");
 
-while(hero.Health > 0 && enemy.Health > 0)
+Thread.Sleep(2000);
+
+//while (hero.Health > 0 && enemy.Health > 0)
+while (hero.Health > 0)
 {
-    int enemyCount = 0;
-    Console.WriteLine($"Your Enemy is a {enemy.TypeOfEnemy}! They have {enemy.Health} health points.");
+    if (hero.GetEnemiesDefeated() > 0 && hero.GetEnemiesDefeated() == enemiesCreated)
+    {
+        Console.WriteLine("New Enemy!");
+        enemy = new EnemyClass();
+        enemiesCreated++;
+    }
+
+    if (turnCount == 0)
+    {
+        Console.WriteLine($"Your Enemy is a {enemy.TypeOfEnemy}! They have {enemy.Health} health points.");
+    }
+    else
+    {
+        Console.WriteLine($"{enemy.TypeOfEnemy} health points: {enemy.Health}. \n {hero.Name}'s health points: {hero.Health}.");
+    }
+    
     Console.WriteLine("****************************************************************************");
-    enemyCount++;
+
     Thread.Sleep(1000);
+
     Console.WriteLine("Do you want to attack (enter \"a\"), or heal? (enter \"h\")");
-    string decision = Console.ReadLine();
+    string decision = Console.ReadLine().ToLower();
+
     if(decision == "a")
     {
-        Console.WriteLine($"{hero.Name} Attacks!");
-        Thread.Sleep(2000);
-        if (enemy.BlockAttack() != 0)
+        if (!enemy.BlockAttack())
         {
-            Console.WriteLine("Oh no! The enemy blocked your attack!");
+            hero.Attack(hero, enemy);
             Thread.Sleep(2000);
-            continue;
         }
-        hero.Attack(enemy);
-        Thread.Sleep(2000);
     }
     else if (decision == "h")
     {
-        if (hero.Health == 25)
-        {
-            Console.WriteLine("You already have full health");
-            continue;
-        }
-        hero.Health += hero.Heal();
-        Thread.Sleep(2000);
+        hero.Heal();
     }
-    enemy.Attack(hero);
+
+    if (enemy.Health > 0)
+    {
+        enemy.Attack(hero, enemy);
+    }
+    else
+    {
+        hero.SetEnemiesDefeated();
+    }
+    turnCount++;
 }
 
-Console.WriteLine("Thanks for playing!");
+Console.WriteLine($"Thank you Brave {hero.Name}! You defeated {hero.GetEnemiesDefeated()} enemies!");
 
 
 
