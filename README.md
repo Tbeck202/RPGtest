@@ -11,7 +11,7 @@ At the end of the game, the User is presented with the number of Enemies they're
 My goal for this simple application is to practice the four pillars of Object Oriented programming: Abstraction, Inheritance, Polymorphism, Encapsulation.
 
 ### Inheritance
-The application has three classes.
+At the moment, the application has three classes.
 
 First, is `CharacterClass`. This is the base class for both the Hero and the Enemies. Each character [will have a starting `Health` property equal to 25](https://github.com/Tbeck202/RPGtest/new/master?readme=1#character-constructor).
 
@@ -20,6 +20,15 @@ They will also have an [`Attack()`](https://github.com/Tbeck202/RPGtest/new/mast
 Next, we have `HeroClass` which <strong>inherits</strong> `Health` and `Attack()` from `CharacterClass`. 
 The Hero class then has it's own [public `Name` property](), as well as a private `EnemiesDefeated` property.
 The Hero class also has some [methods](https://github.com/Tbeck202/RPGtest/new/master?readme=1#hero-methods) of it's own. `SuperAttack`, `Heal()`, `Dodge()`, `SetHealth()`, `GetEnemiesDefeated()`, `SetEnemiesDefeated()`
+
+### Abstraction
+The [`Attack()`](https://github.com/Tbeck202/RPGtest/new/master?readme=1#attack) method is probably the best example of abstraction in this application. There's a whole lot going on in that method (probably <em>too</em> much... more on that later) but when we call it in `Program.cs`, we don't care what's going on behind the scenes. We just need to know that it will deal damage to the opposing character.
+
+### Encapsulation
+There a re a few examples of encapsulation in this application, but here's an easy example. The `Hero` class has a method called `SetEnemiesDefeated()`. Each time the hero defeats an enemy, a private property in the `Hero` class called `EnemiesDefeated` is incremented by one. We don't want to interact with the actual property in the class and instead, we use this method as our way of interacting with the property. This same propert has a `GetEnemiesDefeated()` defeated as well, which reads and returns the value of `EnemiesDefeated`.
+
+### Polymorphism
+I don't yet have a great example of polymorphism in my application, but I have plans to implement a few things that willl demonstrate this principle. First, the [`Attack()`](https://github.com/Tbeck202/RPGtest/new/master?readme=1#attack) method. I would like to refactor this method and define it seperately in the `Hero` and `Enemy` classes. It will remain defined in the `Character` class, just in case I decide to add more characters to the game (like maybe a Wizard that randomly heals the Hero) but will also be redefined with custom functionality specific to the type of character in the `Hero` and `Enemy` classes. Also, I'm planning to implement `Items` into the application. This would allow me to create new weapon types, healing potions, etc. I would create an item interface called `IItem` or something similar in order to ensure that each item had a `Description` property and a `Describe()` method in order to print the item description to the console.
 
 ## Code Snippets
 ### Character Constructor
