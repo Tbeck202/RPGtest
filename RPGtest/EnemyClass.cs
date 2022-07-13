@@ -10,24 +10,6 @@ namespace RPGtest
             TypeOfEnemy = enemySelector();
         }
 
-        //public int BlockAttack()
-        //{
-        //    if (enemy.BlockAttack() != 0)
-        //    {
-        //        Console.WriteLine("Oh no! The enemy blocked your attack!");
-        //        Thread.Sleep(2000);
-        //    }
-
-
-        //    int blockChance = new Random().Next(1, 100);
-        //    bool successfulBlock = blockChance > 85 ? true : false;
-        //    if(successfulBlock)
-        //    {
-        //        return new Random().Next(2, 5);
-        //    }
-        //    return 0;
-        //}
-
         public bool BlockAttack()
         {
             int blockChance = new Random().Next(1, 100);
