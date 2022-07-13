@@ -2,7 +2,7 @@
 <strong>A simple textbased console RPG to practice and demonstrate OOP fundamentals</strong>.
 
 The User plays as the Hero of the game. They will be prompted to enter their name and will then be presented with an enemy. 
-The Hero and the Enemy take turns attacking each other until one of them dies. 
+The Hero and Enemy take turns attacking each other until one of them dies. 
 If the Hero dies first, the game is over.
 If the Enemy dies first, another Enemy is spawned and the process repeats.
 At the end of the game, the User is presented with the number of Enemies they're defeated.
