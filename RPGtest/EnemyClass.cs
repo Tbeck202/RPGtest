@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace RPGtest
 {
     public class EnemyClass : CharacterClass
@@ -16,7 +17,7 @@ namespace RPGtest
             bool successfulBlock = blockChance > 85 ? true : false;
             if (successfulBlock)
             {
-                Console.WriteLine("Oh no! The enemy blocked your attack!");
+                Console.WriteLine($"Oh no! The enemy blocked your attack!");
                 Thread.Sleep(2000);
                 Health -= new Random().Next(2, 5);
                 return true;

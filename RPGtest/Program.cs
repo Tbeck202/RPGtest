@@ -1,12 +1,13 @@
 ﻿using RPGtest;
+using Spectre.Console;
 
-string heroName = "";
-Console.WriteLine("Welcome to the RPG game!");
+AnsiConsole.MarkupLine("[bold Cyan]Welcome to my RPG game!![/]");
 Thread.Sleep(1000);
+string heroName = AnsiConsole.Ask<string>("What's your [green]name[/]?");
 while (heroName == "")
 {
     Console.WriteLine("What is your name?");
-    heroName = Console.ReadLine();
+    heroName = AnsiConsole.Ask<string>("What's your [green]name[/]???");
 }
 
 HeroClass hero = new HeroClass(heroName);
@@ -14,11 +15,10 @@ EnemyClass enemy = new EnemyClass();
 int enemiesCreated = 1;
 int turnCount = 0;
 
-Console.WriteLine($"Hello {hero.Name}! Please help us fight our enemies! You have {hero.Health} health points. Fight well!");
+AnsiConsole.MarkupLine($"Hello [bold DarkGreen]{hero.Name}[/]! Please help us fight our enemies! You have [bold Green]{hero.Health}[/] [Green]health points[/]. Fight well!");
 
 Thread.Sleep(2000);
 
-//while (hero.Health > 0 && enemy.Health > 0)
 while (hero.Health > 0)
 {
     if (hero.GetEnemiesDefeated() > 0 && hero.GetEnemiesDefeated() == enemiesCreated)
@@ -30,19 +30,22 @@ while (hero.Health > 0)
 
     if (turnCount == 0)
     {
-        Console.WriteLine($"Your Enemy is a {enemy.TypeOfEnemy}! They have {enemy.Health} health points.");
+        AnsiConsole.MarkupLine($"Your [Red]Enemy[/] is a [bold Red]{enemy.TypeOfEnemy}[/]! They have [bold DarkRed]{enemy.Health}[/] [bold DarkRed]health points[/].");
     }
     else
     {
-        Console.WriteLine($"{enemy.TypeOfEnemy} health points: {enemy.Health}. \n {hero.Name}'s health points: {hero.Health}.");
+        AnsiConsole.MarkupLine($"[bold Red]{enemy.TypeOfEnemy}[/] health points: [bold Red]{enemy.Health}[/].\n[bold DarkGreen]{hero.Name}[/]'s health points: [bold DarkGreen]{hero.Health}[/].");
     }
-    
-    Console.WriteLine("****************************************************************************");
+
+    AnsiConsole.MarkupLine("[bold Cyan]****************************************************************************[/]");
 
     Thread.Sleep(1000);
 
-    Console.WriteLine("Do you want to attack (enter \"a\"), or heal? (enter \"h\")");
-    string decision = Console.ReadLine().ToLower();
+    string decision = AnsiConsole.Ask<string>("Do you want to attack (enter \"a\"), or heal? (enter \"h\")").ToLower();
+    while (decision != "a" && decision != "h")
+    {
+        decision = AnsiConsole.Ask<string>("Do you want to attack (enter \"a\"), or heal? (enter \"h\")").ToLower();
+    }
 
     if(decision == "a")
     {

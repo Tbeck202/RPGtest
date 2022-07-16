@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace RPGtest
 {
     public class CharacterClass
