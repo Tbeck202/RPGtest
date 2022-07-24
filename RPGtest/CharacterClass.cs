@@ -14,6 +14,7 @@ namespace RPGtest
         }
 
         //Methods
+        /*
         public int Attack(HeroClass hero, EnemyClass enemy)
         {
             int damage = new Random().Next(1, 10);
@@ -55,6 +56,7 @@ namespace RPGtest
             }
             return hitPoints;
         }
+        */
 
         public void Speak()
         {

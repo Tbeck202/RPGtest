@@ -10,6 +10,25 @@ namespace RPGtest
             TypeOfEnemy = enemySelector();
         }
 
+        public int Attack(HeroClass hero)
+        {
+            int damage = new Random().Next(1, 10);
+            int multiplier = new Random().Next(1, 3);
+            int hitPoints = 0;
+           
+            if (hero.Dodge())
+            {
+                Console.WriteLine($"{hero.Name} dodged the {this.TypeOfEnemy}'s attack!");
+            }
+            else
+            {
+                hitPoints = damage * multiplier;
+                Console.WriteLine($"The {this.TypeOfEnemy} attacks! {hero.Name} takes {hitPoints} damage.");
+            }
+            
+            return hitPoints;
+        }
+
         public bool BlockAttack()
         {
             int blockChance = new Random().Next(1, 100);
@@ -34,6 +53,7 @@ namespace RPGtest
         public void SetHealth(int hitPoints)
         {
             Health -= hitPoints;
+            Console.WriteLine($"The {this.TypeOfEnemy} now has {this.Health} health points.");
         }
     }
 }
