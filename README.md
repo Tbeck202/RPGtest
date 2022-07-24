@@ -5,7 +5,7 @@ The User plays as the Hero of the game. They will be prompted to enter their nam
 The Hero and Enemy take turns attacking each other until one of them dies. 
 If the Hero dies first, the game is over.
 If the Enemy dies first, another Enemy is spawned and the process repeats.
-At the end of the game, the User is presented with the number of Enemies they're defeated.
+At the end of the game, the User is presented with the number of Enemies they defeated.
 
 ## Project Goals
 My goal for this simple application is to practice the four pillars of Object Oriented programming: Abstraction, Inheritance, Polymorphism, Encapsulation.
