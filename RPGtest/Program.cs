@@ -15,7 +15,7 @@ EnemyClass enemy = new EnemyClass();
 int enemiesCreated = 1;
 int turnCount = 0;
 
-AnsiConsole.MarkupLine($"Hello [bold DarkGreen]{hero.Name}[/]! Please help us fight our enemies! You have [bold Green]{hero.Health}[/] [Green]health points[/]. Fight well!");
+AnsiConsole.MarkupLine($"Hello [bold Green]{hero.Name}[/]! Please help us fight our enemies! You have [bold Green]{hero.Health}[/] [Green]health points[/]. Fight well!");
 
 Thread.Sleep(2000);
 
@@ -23,14 +23,19 @@ while (hero.Health > 0)
 {
     if (hero.GetEnemiesDefeated() > 0 && hero.GetEnemiesDefeated() == enemiesCreated)
     {
-        Console.WriteLine("New Enemy!");
+        AnsiConsole.MarkupLine("[Red]*********\n[/]");
+        Thread.Sleep(1000);
+        AnsiConsole.MarkupLine("[bold Red]New Enemy[/]!");
+        Thread.Sleep(1000);
+        AnsiConsole.MarkupLine("[Red]\n*********[/]");
+        Thread.Sleep(1000);
         enemy = new EnemyClass();
         enemiesCreated++;
     }
 
     if (turnCount == 0)
     {
-        AnsiConsole.MarkupLine($"Your [Red]Enemy[/] is a [bold Red]{enemy.TypeOfEnemy}[/]! They have [bold DarkRed]{enemy.Health}[/] [bold DarkRed]health points[/].");
+        AnsiConsole.MarkupLine($"Your [Red]Enemy[/] is a [bold Red]{enemy.TypeOfEnemy}[/]! They have [bold DarkRed]{enemy.Health}[/] [bold Red]health points[/].");
     }
     else
     {
@@ -41,10 +46,10 @@ while (hero.Health > 0)
 
     Thread.Sleep(1000);
 
-    string decision = AnsiConsole.Ask<string>("Do you want to attack (enter \"a\"), or heal? (enter \"h\")").ToLower();
+    string decision = AnsiConsole.Ask<string>("Do you want to attack (enter \"a\"), or heal? (enter \"h\"):").ToLower();
     while (decision != "a" && decision != "h")
     {
-        decision = AnsiConsole.Ask<string>("Do you want to attack (enter \"a\"), or heal? (enter \"h\")").ToLower();
+        decision = AnsiConsole.Ask<string>("Do you want to attack (enter \"a\"), or heal? (enter \"h\"):").ToLower();
     }
 
     if(decision == "a")

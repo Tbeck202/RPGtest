@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 
 namespace RPGtest
 {
@@ -38,7 +39,9 @@ namespace RPGtest
             {
                 Console.WriteLine($"Oh no! The enemy blocked your attack!");
                 Thread.Sleep(2000);
-                Health -= new Random().Next(2, 5);
+                int hitPoints = new Random().Next(1, 5);
+                Console.WriteLine($"But you only hit the {this.TypeOfEnemy} with {hitPoints} hit points.");
+                this.Health -= hitPoints;
                 return true;
             }
             return false;
@@ -54,7 +57,14 @@ namespace RPGtest
         public void SetHealth(int hitPoints)
         {
             Health -= hitPoints;
-            Console.WriteLine($"The {this.TypeOfEnemy} now has {this.Health} health points.");
+            if(this.Health > 0)
+            {
+                Console.WriteLine($"The {this.TypeOfEnemy} now has {this.Health} health points.");
+            }
+            else
+            {
+                AnsiConsole.MarkupLine($"You killed the [bold Red]{this.TypeOfEnemy}[/]!");
+            }
         }
     }
 }
