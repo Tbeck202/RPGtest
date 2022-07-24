@@ -51,7 +51,7 @@ while (hero.Health > 0)
     {
         if (!enemy.BlockAttack())
         {
-            hero.Attack(hero, enemy);
+            enemy.SetHealth(hero.Attack(enemy));
             Thread.Sleep(2000);
         }
     }
@@ -62,7 +62,7 @@ while (hero.Health > 0)
 
     if (enemy.Health > 0)
     {
-        enemy.Attack(hero, enemy);
+        hero.SetHealth(enemy.Attack(hero));
     }
     else
     {
